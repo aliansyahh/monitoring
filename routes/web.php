@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Home;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ use Illuminate\Support\Facades\Route;
 //     return view('layouts/dashboard');
 // });
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/Mahasiswa', [StudentsController::class, 'index']);
+Route::get('/Show/{student}', [StudentsController::class, 'show']);

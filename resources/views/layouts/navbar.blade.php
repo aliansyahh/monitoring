@@ -48,9 +48,9 @@
                 </li>
                 <li class="nav-header">Halaman Mahasiswa</li>
                 <li class="nav-item">
-                    <a href="iframe.html" class="nav-link">
-                        <i class="nav-icon fas fa-ellipsis-h"></i>
-                        <p>Tabbed IFrame Plugin</p>
+                    <a href="{{url('/Mahasiswa')}}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Data Mahasiswa</p>
                     </a>
                 </li>
                 <li class="nav-item">
