@@ -22,6 +22,14 @@
          </div><!-- /.container-fluid -->
      </section>
 
+     @if (session('status'))
+     <div class="col-md-6 text-center centered center">
+         <div class="alert alert-success">
+             {{ session('status') }}
+         </div>
+     </div>
+     @endif
+
      <!-- Main content -->
      <section class="content">
          <div class="container-fluid">
@@ -29,7 +37,7 @@
                  <div class="col-12">
                      <div class="card">
                          <div class="card-header">
-                             <a href="" class="btn btn-primary btn-sm">Tambah Data</a>
+                             <a href="{{url('/Mahasiswa/tambah')}}" class="btn btn-primary btn-sm">Tambah Data</a>
                          </div>
                          <!-- /.card-header -->
                          <div class="card-body">
@@ -46,7 +54,8 @@
                                      <tr>
                                          <td>{{$loop->iteration}}</td>
                                          <td>{{$mhs->nama}}</td>
-                                         <td><a href="{{url('/Show/1')}}" class="btn btn-success btn-sm">Detail</a></td>
+                                         <td><a href="{{url('/Show/')}}/{{$mhs->id}}"
+                                                 class="btn btn-success btn-sm">Detail</a></td>
                                      </tr>
                                      @endforeach
                                  </tbody>

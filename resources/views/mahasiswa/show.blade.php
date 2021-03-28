@@ -29,6 +29,12 @@
                 <p><strong>npm : {{$student->nrp}}</strong></p>
                 <p><strong>email : {{$student->email}}</strong></p>
                 <p><strong>jurusan : {{$student->jurusan}}</strong></p>
+                <a href="{{url('/Mahasiswa')}}/{{$student->id}}/edit" class="btn btn-success">Edit</a>
+                <form action="{{$student->id}}" method="POST" class="d-inline-block">
+                    @method('delete')
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
                 <a href="{{url('/Mahasiswa')}}" class="card-link">Kembali</a>
             </div>
         </div>

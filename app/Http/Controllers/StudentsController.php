@@ -25,7 +25,7 @@ class StudentsController extends Controller
      */
     public function create()
     {
-        //
+        return view('mahasiswa.tambah');
     }
 
     /**
@@ -36,7 +36,20 @@ class StudentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nama' => 'required',
+                'nrp' => 'required|unique:students,nrp'
+            ],
+            [
+                'nama.required' => ':attribute Harus Diisi',
+                'nrp.required' => ':attribute Harus Diisi',
+                'nrp.unique' => ':attribute Sudah Ada'
+            ]
+        );
+
+        Student::create($request->all());
+        return redirect(url('/Mahasiswa'))->with('status', 'Data Berhasil Ditambahkan');
     }
 
     /**
@@ -56,9 +69,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Student $student)
     {
-        //
+        return view('mahasiswa/edit', compact('student'));
     }
 
     /**
@@ -68,9 +81,28 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Student $student)
     {
-        //
+        $request->validate(
+            [
+                'nama' => 'required',
+                'nrp' => 'required|unique:students,nrp'
+            ],
+            [
+                'nama.required' => ':attribute Harus Diisi',
+                'nrp.required' => ':attribute Harus Diisi',
+                'nrp.unique' => ':attribute Sudah Ada'
+            ]
+        );
+
+        Student::where('id', $student->id)
+            ->update([
+                'nama' => $request->nama,
+                'nrp' => $request->nrp,
+                'email' => $request->email,
+                'jurusan' => $request->jurusan
+            ]);
+        return redirect(url('/Mahasiswa'))->with('status', 'Data Berhasil Diubah');
     }
 
     /**
@@ -79,8 +111,9 @@ class StudentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Student $student)
     {
-        //
+        Student::destroy($student->id);
+        return redirect(url('/Mahasiswa'))->with('status', 'Data Berhasil Dihapus');
     }
 }
